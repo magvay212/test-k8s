@@ -18,12 +18,12 @@ spec:
       source:
         repoURL: https://github.com/magvay212/test-k8s.git
         targetRevision: HEAD
-        path: '{{path.basename}}'
+        path: '{{path}}'
         kustomize:
           namePrefix: ''
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path}}'
+        namespace: '{{path.basename}}'
       syncPolicy:
         automated:
           prune: true
