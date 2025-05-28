@@ -1,3 +1,3 @@
 resources:
-  - ../template
+  - ../../template
 namespace: nginx-3
