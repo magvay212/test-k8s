@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps-from-dir
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/magvay212/test-k8s.git
+        revision: HEAD
+        directories:
+          - path: '*'
+  template:
+    metadata:
+      name: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/magvay212/test-k8s.git
+        targetRevision: HEAD
+        path: '{{path.basename}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: '{{path.basename}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      syncOptions:     # Sync options which modifies sync behavior
+        - CreateNamespace=true # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.
