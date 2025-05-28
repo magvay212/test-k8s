@@ -23,7 +23,7 @@ spec:
           namePrefix: ''
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{path.basename}}'
+        namespace: '{{path}}'
       syncPolicy:
         automated:
           prune: true
