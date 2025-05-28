@@ -9,7 +9,7 @@ spec:
         repoURL: https://github.com/magvay212/test-k8s.git
         revision: HEAD
         directories:
-          - path: overlays/*
+          - path: 'overlays/*'
   template:
     metadata:
       name: '{{path.basename}}'
